@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <title>Tromino Tiling</title>
+
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+    in vec2 vPosition;
+    in vec4 vColor;
+    out vec4 color;
+    void
+      main()
+      {
+	  gl_Position = vec4(vPosition,0,1);
+    color = vColor;
+	  gl_PointSize = 10.0;
+      }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+      precision highp float;
+      in vec4 color;
+      out vec4 fragColor;
+
+      void
+      main()
+      {
+	  fragColor = color;
+      }
+    </script>
+
+
+    <script src="./initShadersES6.js"></script>
+    <script src="./MVES6.js"></script>
+
+    <script type="text/javascript" src="game.js"></script>
+  </head>
+
+  <body>
+    <h1>
+      Tromino Tiling
+    </h2>
+    <canvas id="gl-canvas" width="500" height="500">
+      Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+    <!-- Number input -->
+    <div>
+      <p>Determine the size of Grid</p>
+      
+      <button id = "2by2">Very Easy (2x2)</button>
+      <button id = "4by4">Easy(4x4)</button>
+      <button id = "8by8">Normal(8x8)</button>
+      <button id = "16by16">Hard(16x16)</button>
+      <button id = "reset">Reset</button>
+      <!-- <input type="number" id="number" value="2" min="0" max="4" step="1" /> -->
+      <p id = "tiles_filled">
+      </p>
+      <p id = "mistake">
+      </p>
+      <div>
+        <h2>Controls</h2>
+        <img src = "./Trominos2.png"/>
+        <ul>
+          <li>
+            Click to place tromino.
+          </li>
+          <li>
+            Press <kbd>1</kbd> for Tromino 1
+          </li>
+          <li>
+            Press <kbd>2</kbd> for Tromino 2
+          </li>
+          <li>
+            Press <kbd>3</kbd> for Tromino 3
+          </li>
+          <li>
+            Press <kbd>4</kbd> for Tromino 4
+          </li>
+          <li>
+            Press <kbd>u</kbd> to undo last move
+          </li>
+          <li>
+            Press <kbd>r</kbd> to cycle between trominos
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
